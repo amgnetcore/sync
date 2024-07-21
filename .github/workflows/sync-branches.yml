@@ -14,7 +14,9 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: main
-      
+          # Explicitly set the Node.js version (node14 is just an example, replace with a supported version)
+          node-version: '14'
+
       - name: Create branches
         run: |
           git checkout -b secondary
