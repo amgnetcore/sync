@@ -1,0 +1,27 @@
+name: Sync Branches
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync-branches:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v2
+        with:
+          ref: main
+      
+      - name: Create branches
+        run: |
+          git checkout -b secondary
+          git push origin secondary
+          
+      - name: Sync updates to secondary branch
+        run: |
+          git checkout secondary
+          git merge main
+          git push origin secondary
