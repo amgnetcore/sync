@@ -17,6 +17,7 @@ jobs:
 
       - name: Create branches
         run: |
+          git pull
           git checkout -b secondary || git checkout secondary
           git push origin secondary
           
