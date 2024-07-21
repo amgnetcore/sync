@@ -15,14 +15,15 @@ jobs:
         with:
           ref: main
 
-      - name: Create branches
+      - name: Create or checkout secondary branch
         run: |
-          git pull
-          git checkout -b secondary || git checkout secondary
+          git fetch
+          git checkout secondary || git checkout -b secondary
+          git pull origin secondary  # Pull latest changes from remote secondary branch
           git push origin secondary
-          
+
       - name: Sync updates to secondary branch
         run: |
           git checkout secondary
-          git merge main
+          git merge main --no-edit  # Merge changes from main into secondary without opening an editor
           git push origin secondary
