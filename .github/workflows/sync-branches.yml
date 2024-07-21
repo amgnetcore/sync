@@ -18,8 +18,8 @@ jobs:
       - name: Fetch and checkout secondary branch
         run: |
           git fetch origin
-          git checkout secondary || git checkout -b secondary origin/secondary
-          git merge origin/secondary --allow-unrelated-histories  # Merge with --allow-unrelated-histories
+          git checkout secondary || git checkout -b secondary
+          git merge origin/secondary --allow-unrelated-histories
           git push origin secondary
 
       - name: Sync updates to secondary branch
